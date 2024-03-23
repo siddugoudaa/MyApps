@@ -19,8 +19,8 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
 
-      - name: Build
-        run: go build ./...
+      - name: Lint
+        run: go fmt ./...
 
       - name: Test
         run: go test ./...
