@@ -18,7 +18,10 @@ jobs:
         run: composer install
 
       - name: Lint
-        run: vendor/bin/phpcs --standard=WordPress wp-content/plugins
+        run: |
+          if ! vendor/bin/phpcs --standard=WordPress wp-content/plugins; then
+            exit 1
+          fi
 
       - name: Test
         run: vendor/bin/phpunit
