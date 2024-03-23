@@ -1,4 +1,4 @@
-name: WordPress Deployment
+name: WordPress CI
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
       - 'feature/*' # Trigger on pushes to any feature branch
 
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,4 +17,8 @@ jobs:
       - name: Install dependencies
         run: composer install
 
-      
+      - name: Lint
+        run: vendor/bin/phpcs --standard=WordPress wp-content/plugins
+
+      - name: Test
+        run: vendor/bin/phpunit
