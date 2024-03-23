@@ -18,7 +18,10 @@ jobs:
         run: npm install
 
       - name: Lint
-        run: npm run lint
+        run: |
+          if ! npm run lint; then
+            exit 1
+          fi
 
       - name: Test
         run: npm test
